@@ -5,6 +5,8 @@ import babinski.sebastian.Tweeter.repository.TweetRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class TweetService {
@@ -24,12 +26,15 @@ public class TweetService {
                 .orElseThrow();
         tweetEdited.setTitle(tweet.getTitle());
         tweetEdited.setContent(tweet.getContent());
-        return tweetEdited;
+        return tweetRepository.save(tweetEdited);
+    }
+
+    public List<Tweet> getAllTweets() {
+        return tweetRepository.findAll();
     }
 
     public Tweet getSingleTweet(long id) {
         return tweetRepository.findById(id)
                 .orElseThrow();
     }
-
 }

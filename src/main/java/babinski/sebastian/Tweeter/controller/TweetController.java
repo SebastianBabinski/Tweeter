@@ -5,6 +5,8 @@ import babinski.sebastian.Tweeter.service.TweetService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequiredArgsConstructor
 public class TweetController {
@@ -26,10 +28,13 @@ public class TweetController {
         tweetService.deleteTweet(id);
     }
 
+    @GetMapping("/tweets")
+    public List<Tweet> getTweets() {
+        return  tweetService.getAllTweets();
+    }
 
-//    public Tweet getSingleTweet(@PathVariable long id) {
-//        return tweetService.getSingleTweet(id);
-//    }
-
-
+    @GetMapping("/tweets/{id}")
+    public Tweet getSingleTweet(@PathVariable long id) {
+        return tweetService.getSingleTweet(id);
+    }
 }
