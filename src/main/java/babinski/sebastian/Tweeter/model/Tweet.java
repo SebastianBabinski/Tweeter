@@ -21,4 +21,5 @@ public class Tweet {
     private String title;
     private String content;
     private LocalDateTime created;
+
 }
